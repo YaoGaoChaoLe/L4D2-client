@@ -1,0 +1,104 @@
+﻿.版本 2
+.支持库 iext
+.支持库 spec
+
+.程序集 窗口程序集_窗口_修改器
+.程序集变量 线程句柄_取消写实模式的玩家隐藏, 整数型
+
+.子程序 _选择框4_被单击
+    Mov_int (ProcessID, Read_Box_MeMony (ProcessID, “server.dll”, “83DD50”), 到整数 (选择框4.选中)) ' 物品位置server.dll+83DD50 - 1
+    子程序_功能文本 (选择框4.标题, 选择框4.选中)
+
+.子程序 _选择框6_被单击
+    Mov_int (ProcessID, Read_Box_MeMony (ProcessID, “server.dll”, “8755F0”), 到整数 (选择框6.选中)) ' 导航网格server.dll+8755F0 - 1
+    子程序_功能文本 (选择框6.标题, 选择框6.选中)
+
+.子程序 _选择框7_被单击
+    Mov_int (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “7C9220”), 到整数 (选择框7.选中)) ' 导演系统client.dll+7C9220
+    子程序_功能文本 (选择框7.标题, 选择框7.选中)
+
+.子程序 _选择框8_被单击
+    Mov_int (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “7D0550”), 到整数 (取反 (选择框8.选中))) ' 开枪后坐力 client.dll+7D0550 - 1
+    子程序_功能文本 (选择框8.标题, 选择框8.选中)
+
+.子程序 _选择框9_被单击
+    Mov_int (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “7CCE88”), 到整数 (取反 (选择框9.选中))) ' 枪口闪光 client.dll+7CCE88 - 1
+    子程序_功能文本 (选择框9.标题, 选择框9.选中)
+
+.子程序 _选择框1_被单击
+    .判断开始 (选择框1.选中)
+        Mov_float (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “75485C”), 140) ' 光射角 client.dll+75485C - 单浮点53~179 - 130
+        Mov_float (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “7BBA98”), 0) ' 动态手电 client.dll+7BBA98 - 1
+        Mov_float (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “754A0C”), 1) ' 光亮度 client.dll+754A0C - 单浮点0~1
+    .默认
+        Mov_float (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “75485C”), 53) ' 光射角 client.dll+75485C - 单浮点53~179 - 130
+        Mov_float (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “7BBA98”), 1) ' 动态手电 client.dll+7BBA98 - 1
+        Mov_float (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “754A0C”), 0) ' 光亮度 client.dll+754A0C - 单浮点0~1
+    .判断结束
+    子程序_功能文本 (选择框1.标题, 选择框1.选中)
+
+.子程序 _选择框10_被单击
+    分组框3.可视 ＝ 选择框10.选中
+    .如果真 (选择框10.选中 ＝ 假)
+        单选框3.选中 ＝ 假
+        单选框4.选中 ＝ 真
+        单选框5.选中 ＝ 假
+        Mov_int (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “7227E8”), 到整数 (1)) ' 模型检视 client.dll+7227E8 -0隐藏 1默认 2透视
+    .如果真结束
+    子程序_功能文本 (选择框10.标题, 选择框10.选中)
+
+.子程序 _单选框3_被单击
+    Mov_int (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “7227E8”), 到整数 (0)) ' 模型检视 client.dll+7227E8 -0隐藏 1默认 2透视
+
+.子程序 _单选框4_被单击
+    Mov_int (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “7227E8”), 到整数 (1)) ' 模型检视 client.dll+7227E8 -0隐藏 1默认 2透视
+
+.子程序 _单选框5_被单击
+    Mov_int (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “7227E8”), 到整数 (2)) ' 模型检视 client.dll+7227E8 -0隐藏 1默认 2透视
+
+.子程序 _选择框5_被单击
+    Mov_int (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “7C5F70”), 到整数 (取反 (选择框5.选中)))
+    .判断开始 (选择框5.选中)
+        线程_启动 (&子程序_取消写实模式的玩家隐藏, , 线程句柄_取消写实模式的玩家隐藏)
+    .默认
+        线程_销毁 (线程句柄_取消写实模式的玩家隐藏)
+    .判断结束
+    子程序_功能文本 (“取消写实模式的玩家隐藏”, 选择框5.选中)
+
+.子程序 子程序_取消写实模式的玩家隐藏
+    .判断循环首 (选择框5.选中)
+        Mov_int (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “7C5F70”), 到整数 (取反 (选择框5.选中)))
+        
+        超级优化_ (10000)
+        处理事件 ()
+    .判断循环尾 ()
+
+.子程序 _按钮1_被单击
+    选择框8.选中 ＝ 真
+    _选择框8_被单击 ()
+    选择框9.选中 ＝ 真
+    _选择框9_被单击 ()
+    选择框1.选中 ＝ 真
+    _选择框1_被单击 ()
+    滑块条1.位置 ＝ 0
+    _滑块条1_位置被改变 ()
+
+.子程序 _滑块条1_位置被改变
+    透明标签2.标题 ＝ “尸体上限(” ＋ 到文本 (滑块条1.位置) ＋ “)”
+    Mov_int (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “7C5D08”), 滑块条1.位置)
+    子程序_功能文本 (“尸体上限”, 真)
+
+.子程序 _选择框2_被单击
+    .判断开始 (选择框2.选中)
+        Mov_Addr (ProcessID, Read_Box_MeMony (ProcessID, “materialsystem.dll”, “1B78F”), 还原字节集2 (“90 90 90”), )
+    .默认
+        Mov_Addr (ProcessID, Read_Box_MeMony (ProcessID, “materialsystem.dll”, “1B78F”), 还原字节集2 (“8B 7D 08”), )
+    .判断结束
+    
+    ' materialsystem.dll.text+1A78F - 8B 7D 08 / 90 90 90
+    调试输出 (“materialsystem.dll 的地址:” ＋ 到文本 (Read_Box_MeMony (ProcessID, “materialsystem.dll”, “0”))) ' materialsystem.dll 的地址
+    调试输出 (“materialsystem.dll.text+1A78F 的地址:” ＋ 到文本 (十六到十 (“7217B78F”))) ' materialsystem.dll.text+1A79B 的地址.71F8B79B - CE直接搞来的临时地址
+    调试输出 (“计算出RVA。最后告诉我，materialsystem.dll.text+1A78F 实际上是 materialsystem.dll+多少?”)
+    ' 让AI搞出RVA，出 materialsystem.dll+？？？->materialsystem.dll+1B78F
+    
+

@@ -1,0 +1,38 @@
+﻿{
+    "T_VMProtect_Anti_Debug_Super": {
+        "Comment": "超级反调试(请配合赞助版T-VMP使用！否则无任何作用！)",
+        "IsPublic": false
+    },
+    "T_VMProtect_初始化": {
+        "Comment": "初始化T-VMP",
+        "IsPublic": false
+    },
+    "T_VMProtect_防护盾": {
+        "Comment": "反脱壳、反调试、反硬件断点",
+        "IsPublic": false
+    },
+    "T_VMProtect_开始_变异": {
+        "Comment": "函数头保护+乱序",
+        "IsPublic": false
+    },
+    "T_VMProtect_开始_超级": {
+        "Comment": "函数头保护+虚拟化+乱序",
+        "IsPublic": false
+    },
+    "T_VMProtect_开始_超级_授权锁": {
+        "Comment": "函数头保护+虚拟化+乱序+授权锁",
+        "IsPublic": false
+    },
+    "T_VMProtect_开始_虚拟": {
+        "Comment": "函数头保护+虚拟化",
+        "IsPublic": false
+    },
+    "T_VMProtect_开始_虚拟_授权锁": {
+        "Comment": "函数头保护+虚拟化+授权锁",
+        "IsPublic": false
+    },
+    "T_VMProtect_内存校验": {
+        "Comment": "检测代码是否被修改",
+        "IsPublic": false
+    }
+}
