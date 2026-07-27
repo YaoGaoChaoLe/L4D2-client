@@ -25,18 +25,6 @@
     Mov_int (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “7CCE88”), 到整数 (取反 (选择框9.选中))) ' 枪口闪光 client.dll+7CCE88 - 1
     子程序_功能文本 (选择框9.标题, 选择框9.选中)
 
-.子程序 _选择框1_被单击
-    .判断开始 (选择框1.选中)
-        Mov_float (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “75485C”), 140) ' 光射角 client.dll+75485C - 单浮点53~179 - 130
-        Mov_float (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “7BBA98”), 0) ' 动态手电 client.dll+7BBA98 - 1
-        Mov_float (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “754A0C”), 1) ' 光亮度 client.dll+754A0C - 单浮点0~1
-    .默认
-        Mov_float (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “75485C”), 53) ' 光射角 client.dll+75485C - 单浮点53~179 - 130
-        Mov_float (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “7BBA98”), 1) ' 动态手电 client.dll+7BBA98 - 1
-        Mov_float (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “754A0C”), 0) ' 光亮度 client.dll+754A0C - 单浮点0~1
-    .判断结束
-    子程序_功能文本 (选择框1.标题, 选择框1.选中)
-
 .子程序 _选择框10_被单击
     分组框3.可视 ＝ 选择框10.选中
     .如果真 (选择框10.选中 ＝ 假)
@@ -78,8 +66,8 @@
     _选择框8_被单击 ()
     选择框9.选中 ＝ 真
     _选择框9_被单击 ()
-    选择框1.选中 ＝ 真
-    _选择框1_被单击 ()
+    选择框3.选中 ＝ 真
+    _选择框3_被单击 ()
     滑块条1.位置 ＝ 0
     _滑块条1_位置被改变 ()
 
@@ -101,4 +89,34 @@
     调试输出 (“计算出RVA。最后告诉我，materialsystem.dll.text+1A78F 实际上是 materialsystem.dll+多少?”)
     ' 让AI搞出RVA，出 materialsystem.dll+？？？->materialsystem.dll+1B78F
     
+
+.子程序 _滑块条2_位置被改变
+    Mov_float (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “75485C”), 滑块条2.位置)
+    透明标签3.标题 ＝ “光射角(” ＋ 到文本 (滑块条2.位置) ＋ “)”
+
+.子程序 _滑块条2_鼠标位置被移动, 逻辑型
+    .参数 横向位置, 整数型
+    .参数 纵向位置, 整数型
+    .参数 功能键状态, 整数型
+
+    _滑块条2_位置被改变 ()
+
+.子程序 _选择框3_被单击
+    .判断开始 (选择框3.选中)
+        Mov_float (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “75485C”), 滑块条2.位置) ' 光射角 client.dll+75485C - 单浮点53~179 - 120
+        Mov_float (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “7BBA98”), 到整数 (取反 (选择框1.选中))) ' 动态手电 client.dll+7BBA98 - 1
+        Mov_float (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “754A0C”), 到整数 (选择框11.选中)) ' 光亮度 client.dll+754A0C - 单浮点0~1
+    .默认
+        Mov_float (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “75485C”), 53) ' 光射角 client.dll+75485C - 单浮点53~179 - 130
+        Mov_float (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “7BBA98”), 1) ' 动态手电 client.dll+7BBA98 - 1
+        Mov_float (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “754A0C”), 0) ' 光亮度 client.dll+754A0C - 单浮点0~1
+    .判断结束
+    子程序_功能文本 (选择框3.标题, 选择框3.选中)
+    分组框5.可视 ＝ 选择框3.选中
+
+.子程序 _选择框1_被单击
+    Mov_float (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “7BBA98”), 到整数 (取反 (选择框1.选中))) ' 动态手电 client.dll+7BBA98 - 1
+
+.子程序 _选择框11_被单击
+    Mov_float (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “754A0C”), 到整数 (选择框11.选中)) ' 光亮度 client.dll+754A0C - 单浮点0~1
 
