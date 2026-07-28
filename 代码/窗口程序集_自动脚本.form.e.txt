@@ -17,32 +17,28 @@
     子程序_功能文本 (选择框1.标题, 选择框1.选中)
 
 .子程序 子程序_连跳
-    Mov_int (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “781C34”), 1) ' 强制设定为落地状态
-    Mov_int (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “781C80”), 1) ' 强制设定为落地状态
     .判断循环首 (选择框1.选中)
-        ' 连跳
-        是否落地 ＝ Read_int (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “781C34”), 1)
-        是否落地2 ＝ Read_int (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “781C80”), 1)
-        .如果真 (是否落地 ≥ 2 或 是否落地2 ≥ 2)
+        ' ' 强制设定为落地状态
+        .判断开始 (API热键监视 (#Alt键) ≠ 0) ' ALT 按下
             Mov_int (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “781C34”), 1) ' 强制设定为落地状态
             Mov_int (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “781C80”), 1) ' 强制设定为落地状态
-        .如果真结束
-        .如果真 (是否落地 ＝ 1 或 是否落地2 ＝ 1) ' =1 触地
-            .判断开始 (API热键监视 (#Alt键) ≠ 0)
-                键盘模拟 (, #空格键, , )
-                .如果真 (选择框2.选中)
-                    Mov_int (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “7A2008”), 1) ' 显示速度_开
+            子程序_功能文本 (“[AutoBhop]”, 真)
+        .默认
+            子程序_功能文本 (“[AutoBhop]”, 假)
+        .判断结束
+        
+        .判断循环首 (API热键监视 (#Alt键) ≠ 0)
+            是否落地 ＝ Read_int (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “781C34”), 1) ' 备用
+            是否落地2 ＝ Read_int (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “781C80”), 1) ' 主要
+            .如果真 (是否落地2 ＝ 1 或 是否落地 ＝ 1) ' 1 触地
+                .如果真 (API热键监视 (#Alt键) ≠ 0) ' ALT 按下
+                    键盘模拟 (, #空格键, , )
                 .如果真结束
                 
-            .默认
-                .如果真 (选择框2.选中)
-                    Mov_int (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “7A2008”), 0) ' 显示速度_关
-                .如果真结束
-                超级优化_ (150)
-            .判断结束
+            .如果真结束
             
-        .如果真结束
-        
+        .判断循环尾 ()
+        超级优化_ (150)
         处理事件 ()
     .判断循环尾 ()
 
@@ -98,5 +94,13 @@
         处理事件 ()
     .判断循环尾 ()
     
+    
+
+.子程序 _选择框2_被单击
+    .判断开始 (选择框2.选中)
+        Mov_int (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “7A2008”), 1) ' 显示速度_开
+    .默认
+        Mov_int (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “7A2008”), 0) ' 显示速度_关
+    .判断结束
     
 

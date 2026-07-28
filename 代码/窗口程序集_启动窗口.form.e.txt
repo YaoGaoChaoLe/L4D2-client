@@ -43,11 +43,6 @@
         游戏_窗口句柄 ＝ 名取窗口句柄 (“left4dead2.exe”)
         游戏_左边 ＝ 取窗口左边 (游戏_窗口句柄)
         游戏_顶边 ＝ 取窗口顶边 (游戏_窗口句柄)
-        ' 强制设定为落地状态
-        .如果真 (API热键监视 (#W键) ≠ 0)
-            Mov_int (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “781C34”), 1)
-            Mov_int (ProcessID, Read_Box_MeMony (ProcessID, “client.dll”, “781C80”), 1)
-        .如果真结束
         _选择框3_被单击 ()
         超级优化_ (3000)
         处理事件 ()
@@ -91,19 +86,15 @@
     _启动窗口.禁止 ＝ 真
     ProcessID ＝ 取进程ID (“left4dead2.exe”)
     程序_禁止重复运行 (“SEBDSFOKlaBJISOAGEABDANfZSFDHDXMDMZSEFDCASKRMFJUBDIKOVMJGTXURIFKSDOVJFDGIRKFOVMJN”, , , , )
+    ' 新增 无限子弹、修改手臂长度、更好的手电_光射程
+    ' 优化 连跳地面判定
+    
     ' 游戏准星开关client.dll+757F28
     ' 游戏准星_红色 client.dll+7CCC48 默认135 四字节0~255
     ' 游戏准星_绿色 client.dll+7CCC90 默认180
     ' 游戏准星_蓝色 client.dll+7CCCD8 默认215
     ' 游戏准星_透明度 client.dll+7CCD20
     ' 动态准星 client.dll+7CCDB0 默认1
-    
-    ' 扣血server.dll.text+40DF8 - 89 37
-    ' 加血server.dll.text+5882D - 89 3E
-    ' 扣子弹server.dll.text+3E8580 - 89 BE 14140000
-    ' 换弹变0 server.dll.text+3E7A1E - C7 86 14140000 00000000 - mov [esi+00001414],00000000
-    ' 换弹完成server.dll.text+4D4C5 - 89 96 14140000        - mov [esi+00001414],edx
-    
     
     ' 物品位置 server.dll+83DD50 - 1
     ' 导航网格 server.dll+8755F0 - 1
@@ -112,10 +103,13 @@
     ' 开枪后坐力 client.dll+7D0550 - 1
     ' 枪口闪光 client.dll+7CCE88 - 1
     ' 模型检视 client.dll+7227E8 -0隐藏 1默认 2透视
+    ' 手臂长度 client.dll+7C2FFC - 单浮点0~150 默认50
+    ' 扣子弹 server.dll.text+3E8610 - 89 BE 14 14 00 00 / 90 90 90 90 90 90
     
     ' 光射角 client.dll+75485C - 单浮点53~179 - 130
     ' 光亮度 client.dll+754A0C - 单浮点0~1
     ' 动态手电 client.dll+7BBA98 - 1
+    ' 光射程 client.dll+7549C4 - 单浮点 默认750~6000
     
     ' 是否打开聊天栏 client.dll+7579E8 - 0关
     ' 尸体上限 client.dll+7C5D08 - 0~默认75
@@ -151,4 +145,11 @@
     华侨_SKIN设置_窗口透明 (窗口_自动脚本.取窗口句柄 (), 滑块条1.位置)
     华侨_SKIN设置_窗口透明 (窗口_修改器.取窗口句柄 (), 滑块条1.位置)
     
+
+.子程序 _透明标签2_鼠标左键被按下, 逻辑型
+    .参数 横向位置, 整数型
+    .参数 纵向位置, 整数型
+    .参数 功能键状态, 整数型
+
+    打开指定网址 (“https://github.com/YaoGaoChaoLe/L4D2-client”)
 
