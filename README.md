@@ -6,7 +6,7 @@
 
 ### 3、辅助脚本：按住 Alt 键实现AutoBhop的效果。
 
-<img width="1012" height="958" alt="03469d9b-e75a-417e-9584-c7309bfe3968" src="https://github.com/user-attachments/assets/ccd8b9ac-ba85-4ce1-8bb5-4d4ccc627fe1" />
+<img width="1714" height="1001" alt="QQ20260729-194738" src="https://github.com/user-attachments/assets/9a76d8fd-41b8-491c-ac8a-e6f16308ae9e" />
 
 > **免责声明**
 > 本项目仅供个人学习和游戏机制研究使用。功能:模型检视_透视、自动连跳 可能会触发部分服务器的反作弊系统。使用本软件产生的任何后果由使用者自行承担。
